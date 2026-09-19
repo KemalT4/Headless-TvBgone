@@ -9,13 +9,12 @@ Open one folder at a time in Arduino IDE:
 Each folder is a separate sketch with its own IR code header.
 
 Usage:
-1. Open just one folder in Arduino IDE.
+1. Open a .ino folder (the one with arduino ide photo)
 2. Select your ESP32 board and serial port.
-3. Upload that sketch.
-4. Keep the IR LED on GPIO 4 with a proper resistor and driver.
-5. Watch the Serial Monitor at 115200.
+3. Upload.
+4. Connect the IR led to Pin 4.
+5. Whenever the esp32 is working it will scroll through all the tv closing codes.
 
 Notes:
 - EU and NA include the LG code set as part of their transmission loops.
-- LG also remains available as a small standalone sketch.
-- Add more regions by copying an existing folder.
+ # Make sure you have arduino IDE downloaded
