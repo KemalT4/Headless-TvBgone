@@ -16,7 +16,7 @@ This project works with most ESP32 boards , as long as the board has a valid GPI
 ## Setup
 1. Install Arduino Ide
 2. Download the zip of this repo
-3.  Select your ESP32 board
+3. Select your ESP32 board
 3. Upload it 
 
 ## Default pin
