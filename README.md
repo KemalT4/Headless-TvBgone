@@ -2,11 +2,11 @@
 
 ESP32 IR transmitter project for sending TV power-off codes.
 
-This project works with ESP32 boards supported by the Arduino-ESP32 core, as long as the board has a valid GPIO connected to an IR LED driver.
+This project works with most ESP32 boards , as long as the board has a valid GPIO connected to the IR LED.
 
 ## Features
-- Sends IR power-off codes
-- ESP32 compatible
+- Sends IR power-off codes (Tested in EU tvs only)
+- Most ESP32 and IR compatible
 - Easy to modify for different GPIO pins
 
 ## Wiring
@@ -15,9 +15,9 @@ This project works with ESP32 boards supported by the Arduino-ESP32 core, as lon
 
 ## Setup
 1. Install Arduino Ide
-2. Select your ESP32 board
-3. Upload the sketch
-4. Connect the IR output circuit
+2. Download the zip of this repo
+3.  Select your ESP32 board
+3. Upload it 
 
 ## Default pin
 ```cpp
