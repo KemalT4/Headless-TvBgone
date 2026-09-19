@@ -17,4 +17,4 @@ Usage:
 
 Notes:
 - EU and NA include the LG code set as part of their transmission loops.
- # Make sure you have arduino IDE downloaded
+ ## Make sure you have arduino IDE downloaded
