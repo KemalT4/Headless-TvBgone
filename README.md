@@ -1,39 +1,25 @@
 # Headless-TvBgone
 
-ESP32 IR transmitter TV-B-Gone project for sending power-off codes to consumer electronics.
+ESP32 IR transmitter project for sending TV power-off codes.
 
-This project is designed for ESP32 boards supported by the Arduino-ESP32 core. Every ESP32 board supported by the Arduino-ESP32 core is compatible as long as it has a valid GPIO connected to an IR LED driver circuit.
+This project works with ESP32 boards supported by the Arduino-ESP32 core, as long as the board has a valid GPIO connected to an IR LED driver.
 
 ## Features
-- Sends a large set of EU power-off IR codes
-- Includes direct LG power-pulse commands for quicker response
-- Runs on ESP32 Arduino boards
-- Easy to modify for different GPIO pins and timing
+- Sends IR power-off codes
+- ESP32 compatible
+- Easy to modify for different GPIO pins
 
-## Hardware wiring
-- Use a GPIO pin such as GPIO 4 as the IR output pin by default
-- Connect the IR LED through a transistor or MOSFET driver stage
-- Add a current-limiting resistor and proper flyback protection as needed
-- Keep wiring short and use a proper IR LED driver for reliable output
+## Wiring
+- Use GPIO 4 by default
+- Connect the IR LED through a transistor/MOSFET driver
+- Add a resistor and proper driver circuit
 
-## Required setup
-1. Install the Arduino-ESP32 core in Arduino IDE
-2. Select your ESP32 board from Tools > Board
-3. Open this project in Arduino IDE
-4. Build and upload to the ESP32
-5. Connect the IR output circuit to the configured GPIO
+## Setup
+1. Install Arduino-ESP32
+2. Select your ESP32 board
+3. Upload the sketch
+4. Connect the IR output circuit
 
 ## Default pin
-The sketch uses GPIO 4 by default:
-
 ```cpp
 constexpr uint16_t kIrLedPin = 4;
-```
-
-## Notes
-- Not every GPIO is ideal for IR output on all ESP32 modules, so verify your board pin map
-- The code is built around the Arduino-ESP32 `IRsend` class
-- A dedicated transistor driver is recommended for stronger IR output
-
-## License
-This project is provided under the MIT license.
