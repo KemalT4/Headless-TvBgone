@@ -6,7 +6,6 @@ namespace {
 constexpr uint16_t kIrLedPin = 4;
 constexpr uint32_t kSerialBaud = 115200;
 constexpr uint16_t kInterCodeDelayMs = 5;
-constexpr uint16_t kLgInterCodeDelayMs = 100;
 
 IRsend irsend(kIrLedPin);
 uint16_t rawData[300];
@@ -36,18 +35,6 @@ bool expandCode(const IrCode& code) {
   return true;
 }
 
-void sendLgPowerCodes() {
-  for (uint8_t i = 0; i < kLgCodeCount; ++i) {
-    irsend.sendNEC(kLgPowerCodes[i], 32);
-    Serial.print(F("Sent LG power code "));
-    Serial.print(i + 1);
-    Serial.print('/');
-    Serial.println(kLgCodeCount);
-    delay(kLgInterCodeDelayMs);
-    yield();
-  }
-}
-
 void sendCode(uint8_t index) {
   const IrCode& code = *kPowerCodes[index];
   if (!expandCode(code)) {
@@ -69,14 +56,10 @@ void setup() {
   irsend.begin();
   Serial.print(F("EU transmitter ready: "));
   Serial.print(kPowerCodeCount);
-  Serial.print(F(" EU codes plus "));
-  Serial.print(kLgCodeCount);
-  Serial.println(F(" LG codes"));
+  Serial.println(F(" codes"));
 }
 
 void loop() {
-  sendLgPowerCodes();
-
   for (uint8_t index = 0; index < kPowerCodeCount; ++index) {
     sendCode(index);
     delay(kInterCodeDelayMs);

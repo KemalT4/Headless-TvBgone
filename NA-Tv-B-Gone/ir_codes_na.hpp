@@ -12,12 +12,6 @@ struct IrCode {
   const uint8_t* codes;
 };
 
-constexpr uint32_t kLgPowerCodes[] = {
-  0x20DF10EF,
-  0x20DF23DC,
-};
-constexpr uint8_t kLgCodeCount = sizeof(kLgPowerCodes) / sizeof(kLgPowerCodes[0]);
-
 constexpr uint16_t kNa000Times[] = {60, 60, 60, 2700, 120, 60, 240, 60};
 constexpr uint8_t kNa000Codes[] = {0xE2, 0x20, 0x80, 0x78, 0x88, 0x20, 0x10};
 constexpr IrCode kNa000Code = {38, 26, 2, 4, sizeof(kNa000Codes), kNa000Times, kNa000Codes};
