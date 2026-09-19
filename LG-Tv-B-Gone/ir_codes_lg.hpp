@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 
+// Common LG TV NEC power commands included by every regional sketch.
 constexpr uint32_t kLgPowerCodes[] = {
   0x20DF10EF,
   0x20DF23DC,
