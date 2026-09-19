@@ -16,6 +16,6 @@ Usage:
 5. Watch the Serial Monitor at 115200.
 
 Notes:
-- EU and NA are separate regional code groups.
-- LG stays as its own standalone transmitter.
+- EU and NA include the LG code set as part of their transmission loops.
+- LG also remains available as a small standalone sketch.
 - Add more regions by copying an existing folder.
