@@ -4,8 +4,6 @@ Open one folder at a time in Arduino IDE:
 
 - EU-Tv-B-Gone/
 - NA-Tv-B-Gone/
-- LG-Tv-B-Gone/
-
 Each folder is a separate sketch with its own IR code header.
 
 Usage:
@@ -15,6 +13,5 @@ Usage:
 4. Connect the IR led to Pin 4.
 5. Whenever the esp32 is working it will scroll through all the tv closing codes.
 
-Notes:
-- EU and NA include the LG code set as part of their transmission loops.
- ## Make sure you have arduino IDE downloaded
+
+ ## Make sure you have arduino IDE!
