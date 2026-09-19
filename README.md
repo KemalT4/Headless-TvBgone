@@ -11,11 +11,10 @@ This project works with ESP32 boards supported by the Arduino-ESP32 core, as lon
 
 ## Wiring
 - Use GPIO 4 by default
-- Connect the IR LED through a transistor/MOSFET driver
-- Add a resistor and proper driver circuit
+- Connect the IR LED to the Esp32
 
 ## Setup
-1. Install Arduino-ESP32
+1. Install Arduino Ide
 2. Select your ESP32 board
 3. Upload the sketch
 4. Connect the IR output circuit
