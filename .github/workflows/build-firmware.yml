@@ -6,11 +6,14 @@ on:
     paths:
       - 'NA-Tv-B-Gone/**'
       - 'EU-Tv-B-Gone/**'
+      - 'web/**'
       - '.github/workflows/build-firmware.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -87,3 +90,24 @@ jobs:
             firmware-eu-c6.bin
           overwrite_files: true
           make_latest: true
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
