@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Headless TV-B-Gone Flasher</title>
+    <script type="module" src="https://unpkg.com/esp-web-tools@10.0.0/dist/web/install-button.js?module"></script>
+    <style>
+      body {
+        max-width: 720px;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+      }
+      .card {
+        border: 1px solid #d9d9d9;
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+      }
+      .warning {
+        background: #fff4d6;
+        border: 1px solid #f0d06a;
+        border-radius: 8px;
+        padding: 0.9rem;
+      }
+      esp-web-install-button {
+        display: block;
+        margin-top: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Headless TV-B-Gone</h1>
+    <p>Flash the latest firmware to an ESP32 directly from your browser in Chrome or Edge.</p>
+
+    <div class="warning">
+      <strong>Warning:</strong> flashing replaces the board's existing firmware. Only flash devices you own or are authorized to control.
+    </div>
+
+    <div class="card">
+      <h2>North America / Asia</h2>
+      <p>Use the NA/Asia firmware.</p>
+      <esp-web-install-button manifest="manifest-na.json"></esp-web-install-button>
+    </div>
+
+    <div class="card">
+      <h2>Europe</h2>
+      <p>Use the EU firmware.</p>
+      <esp-web-install-button manifest="manifest-eu.json"></esp-web-install-button>
+    </div>
+
+    <p>Requires the ESP32 board, USB data cable, and IR LED connected to GPIO 4. Use a correct resistor or transistor driver for the LED.</p>
+  </body>
+</html>
