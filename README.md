@@ -4,9 +4,7 @@ ESP32 IR transmitter firmware with separate North America/Asia and Europe sketch
 
 ## Web flasher
 
-This project includes a browser-based ESP32 flasher in the `web/` folder. It points to the latest compiled firmware binaries in the `latest` GitHub release, so the flash page automatically follows the newest firmware updates.
-
-Open the deployed site in Chrome or Edge, connect an ESP32 with a USB data cable, choose NA/Asia or Europe, and click Install.
+Doesnt work at the moment
 
 ## Flash with Arduino IDE
 
