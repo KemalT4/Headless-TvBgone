@@ -12,10 +12,37 @@
       ]
     },
     {
+      "chipFamily": "ESP32-S2",
+      "parts": [
+        {
+          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-eu-s2.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
       "chipFamily": "ESP32-S3",
       "parts": [
         {
           "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-eu-s3.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-eu-c3.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        {
+          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-eu-c6.bin",
           "offset": 0
         }
       ]

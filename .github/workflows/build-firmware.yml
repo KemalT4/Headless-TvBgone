@@ -56,8 +56,14 @@ jobs:
 
           build_firmware na esp32:esp32:esp32 NA-Tv-B-Gone
           build_firmware eu esp32:esp32:esp32 EU-Tv-B-Gone
+          build_firmware na-s2 esp32:esp32:esp32s2 NA-Tv-B-Gone
+          build_firmware eu-s2 esp32:esp32:esp32s2 EU-Tv-B-Gone
           build_firmware na-s3 esp32:esp32:esp32s3 NA-Tv-B-Gone
           build_firmware eu-s3 esp32:esp32:esp32s3 EU-Tv-B-Gone
+          build_firmware na-c3 esp32:esp32:esp32c3 NA-Tv-B-Gone
+          build_firmware eu-c3 esp32:esp32:esp32c3 EU-Tv-B-Gone
+          build_firmware na-c6 esp32:esp32:esp32c6 NA-Tv-B-Gone
+          build_firmware eu-c6 esp32:esp32:esp32c6 EU-Tv-B-Gone
 
       - name: Publish latest release
         uses: softprops/action-gh-release@v2
@@ -71,7 +77,13 @@ jobs:
           files: |
             firmware-na.bin
             firmware-eu.bin
+            firmware-na-s2.bin
+            firmware-eu-s2.bin
             firmware-na-s3.bin
             firmware-eu-s3.bin
+            firmware-na-c3.bin
+            firmware-eu-c3.bin
+            firmware-na-c6.bin
+            firmware-eu-c6.bin
           overwrite_files: true
           make_latest: true
