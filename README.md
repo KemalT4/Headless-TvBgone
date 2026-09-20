@@ -15,10 +15,9 @@ Usage:
 Arduino libraries:
 - IRremoteESP8266 by crankyoldgit
 
-Board:
-- ESP32
-
 IR LED pin:
 - GPIO 4
 
  Whenever the esp32 is working it will scroll through all the tv closing codes.
+
+# REQUIRES ARDUINO IDE
