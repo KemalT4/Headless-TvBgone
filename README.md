@@ -20,4 +20,4 @@ IR LED pin:
 
  Whenever the esp32 is working it will scroll through all the tv closing codes.
 
-# REQUIRES ARDUINO IDE
+### REQUIRES ARDUINO IDE
