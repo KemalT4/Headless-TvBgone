@@ -10,6 +10,15 @@
           "offset": 0
         }
       ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-s3.bin",
+          "offset": 0
+        }
+      ]
     }
   ]
 }
