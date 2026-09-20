@@ -15,8 +15,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FQBN: esp32:esp32:esp32
 
     steps:
       - name: Check out repository
@@ -40,11 +38,12 @@ jobs:
 
           build_firmware() {
             local name="$1"
-            local sketch="$2"
+            local fqbn="$2"
+            local sketch="$3"
             local output_dir="build/$name"
 
             arduino-cli compile \
-              --fqbn "$FQBN" \
+              --fqbn "$fqbn" \
               --export-binaries \
               --output-dir "$output_dir" \
               "$sketch"
@@ -55,8 +54,10 @@ jobs:
             cp "$merged" "firmware-$name.bin"
           }
 
-          build_firmware na NA-Tv-B-Gone
-          build_firmware eu EU-Tv-B-Gone
+          build_firmware na esp32:esp32:esp32 NA-Tv-B-Gone
+          build_firmware eu esp32:esp32:esp32 EU-Tv-B-Gone
+          build_firmware na-s3 esp32:esp32:esp32s3 NA-Tv-B-Gone
+          build_firmware eu-s3 esp32:esp32:esp32s3 EU-Tv-B-Gone
 
       - name: Publish latest release
         uses: softprops/action-gh-release@v2
@@ -70,5 +71,7 @@ jobs:
           files: |
             firmware-na.bin
             firmware-eu.bin
+            firmware-na-s3.bin
+            firmware-eu-s3.bin
           overwrite_files: true
           make_latest: true
