@@ -11,8 +11,14 @@ Usage:
 2. Select your ESP32 board and serial port.
 3. Install the IRremoteESP8266 library!!!
 4. Upload.
-5. Connect the IR led to Pin 4.
-6. Whenever the esp32 is working it will scroll through all the tv closing codes.
 
+Arduino libraries:
+- IRremoteESP8266 by crankyoldgit
 
- ## Make sure you have arduino IDE!
+Board:
+- ESP32
+
+IR LED pin:
+- GPIO 4
+
+ Whenever the esp32 is working it will scroll through all the tv closing codes.
