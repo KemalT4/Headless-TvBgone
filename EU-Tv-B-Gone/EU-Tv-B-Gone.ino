@@ -7,7 +7,6 @@ constexpr uint16_t kIrLedPin = 4;
 constexpr uint32_t kSerialBaud = 115200;
 constexpr uint16_t kInterCodeDelayMs = 5;
 constexpr uint16_t kLgInterCodeDelayMs = 100;
-
 IRsend irsend(kIrLedPin);
 uint16_t rawData[300];
 
@@ -15,7 +14,6 @@ bool expandCode(const IrCode& code) {
   uint16_t codeByte = 0;
   uint8_t bitsLeft = 0;
   uint16_t codePtr = 0;
-
   for (uint8_t pair = 0; pair < code.numPairs; ++pair) {
     uint16_t index = 0;
     for (uint8_t bit = 0; bit < code.bitsPerIndex; ++bit) {
@@ -27,13 +25,28 @@ bool expandCode(const IrCode& code) {
       --bitsLeft;
       index = static_cast<uint16_t>((index << 1) | ((codeByte >> bitsLeft) & 1));
     }
-
     const uint16_t timingIndex = index * 2;
     if (timingIndex + 1 >= code.timeValues) return false;
     rawData[pair * 2] = code.times[timingIndex] * 10;
     rawData[pair * 2 + 1] = code.times[timingIndex + 1] * 10;
   }
   return true;
+}
+
+void sendCommonPowerCodes() {
+  for (uint8_t i = 0; i < kSamsungCodeCount; ++i) {
+    irsend.sendSamsung(kSamsungPowerCodes[i], 32);
+    delay(kInterCodeDelayMs);
+  }
+  for (uint8_t i = 0; i < kToshibaCodeCount; ++i) {
+    irsend.sendNEC(kToshibaPowerCodes[i], 32);
+    delay(kInterCodeDelayMs);
+  }
+  for (uint8_t i = 0; i < kSonyCodeCount; ++i) {
+    irsend.sendSony(kSonyPowerCodes[i], 12);
+    delay(kInterCodeDelayMs);
+  }
+  Serial.println(F("Sent Samsung, Toshiba, and Sony power codes"));
 }
 
 void sendLgPowerCodes() {
@@ -54,7 +67,6 @@ void sendCode(uint8_t index) {
     Serial.println(F("Invalid EU code data; transmission skipped."));
     return;
   }
-
   irsend.sendRaw(rawData, code.numPairs * 2, code.timerValue);
   Serial.print(F("Sent EU code "));
   Serial.print(index + 1);
@@ -76,7 +88,7 @@ void setup() {
 
 void loop() {
   sendLgPowerCodes();
-
+  sendCommonPowerCodes();
   for (uint8_t index = 0; index < kPowerCodeCount; ++index) {
     sendCode(index);
     delay(kInterCodeDelayMs);

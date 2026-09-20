@@ -18,6 +18,23 @@ constexpr uint32_t kLgPowerCodes[] = {
 };
 constexpr uint8_t kLgCodeCount = sizeof(kLgPowerCodes) / sizeof(kLgPowerCodes[0]);
 
+// Additional common protocol-native power codes. TV models can use different
+// addresses, so these supplement (rather than replace) the TV-B-Gone codes.
+constexpr uint32_t kSamsungPowerCodes[] = {
+  0xE0E040BF,
+};
+constexpr uint8_t kSamsungCodeCount = sizeof(kSamsungPowerCodes) / sizeof(kSamsungPowerCodes[0]);
+
+constexpr uint32_t kToshibaPowerCodes[] = {
+  0x02FD48B7,
+};
+constexpr uint8_t kToshibaCodeCount = sizeof(kToshibaPowerCodes) / sizeof(kToshibaPowerCodes[0]);
+
+constexpr uint16_t kSonyPowerCodes[] = {
+  0x0A90,
+};
+constexpr uint8_t kSonyCodeCount = sizeof(kSonyPowerCodes) / sizeof(kSonyPowerCodes[0]);
+
 constexpr uint16_t kEu000Times[] = {
   43, 47, 43, 91, 43, 8324, 88, 47,
   133, 133, 264, 90, 264, 91,

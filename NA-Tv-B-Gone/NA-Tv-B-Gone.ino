@@ -33,6 +33,22 @@ bool expandCode(const IrCode& code) {
   return true;
 }
 
+void sendCommonPowerCodes() {
+  for (uint8_t i = 0; i < kSamsungCodeCount; ++i) {
+    irsend.sendSamsung(kSamsungPowerCodes[i], 32);
+    delay(kInterCodeDelayMs);
+  }
+  for (uint8_t i = 0; i < kToshibaCodeCount; ++i) {
+    irsend.sendNEC(kToshibaPowerCodes[i], 32);
+    delay(kInterCodeDelayMs);
+  }
+  for (uint8_t i = 0; i < kSonyCodeCount; ++i) {
+    irsend.sendSony(kSonyPowerCodes[i], 12);
+    delay(kInterCodeDelayMs);
+  }
+  Serial.println(F("Sent Samsung, Toshiba, and Sony power codes"));
+}
+
 void sendLgPowerCodes() {
   for (uint8_t i = 0; i < kLgCodeCount; ++i) {
     irsend.sendNEC(kLgPowerCodes[i], 32);
@@ -72,7 +88,7 @@ void setup() {
 
 void loop() {
   sendLgPowerCodes();
-
+  sendCommonPowerCodes();
   for (uint8_t index = 0; index < kPowerCodeCount; ++index) {
     sendCode(index);
     delay(kInterCodeDelayMs);
