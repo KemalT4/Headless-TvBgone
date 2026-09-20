@@ -3,54 +3,74 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
     <title>Headless TV-B-Gone Flasher</title>
     <script type="module" src="https://unpkg.com/esp-web-tools@10.0.0/dist/web/install-button.js?module"></script>
     <style>
-      body {
-        max-width: 720px;
-        margin: 3rem auto;
-        padding: 0 1rem;
-        font-family: system-ui, -apple-system, sans-serif;
-        line-height: 1.5;
+      :root {
+        color-scheme: dark;
+        --bg: #0b0d10;
+        --panel: #15191f;
+        --text: #f4f7fb;
+        --muted: #aab4c0;
+        --border: #2a333e;
+        --accent: #7c5cff;
+        --warning: #3b2d12;
       }
+      @media (prefers-color-scheme: light) {
+        :root {
+          color-scheme: light;
+          --bg: #f5f7fa;
+          --panel: #ffffff;
+          --text: #111827;
+          --muted: #536170;
+          --border: #d8dee7;
+          --accent: #5b3df5;
+          --warning: #fff4d6;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 2rem 1rem 4rem;
+        background: var(--bg);
+        color: var(--text);
+        font: 1rem/1.55 system-ui, sans-serif;
+      }
+      h1 { margin-bottom: .25rem; }
+      .subtitle, small { color: var(--muted); }
       .card {
-        border: 1px solid #d9d9d9;
-        border-radius: 12px;
-        padding: 1rem 1.25rem;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.25rem;
         margin: 1rem 0;
       }
       .warning {
-        background: #fff4d6;
-        border: 1px solid #f0d06a;
-        border-radius: 8px;
-        padding: 0.9rem;
+        background: var(--warning);
+        border: 1px solid #b4872b;
+        border-radius: 10px;
+        padding: .9rem 1rem;
       }
-      esp-web-install-button {
-        display: block;
-        margin-top: 0.8rem;
-      }
+      esp-web-install-button { display: block; margin-top: 1rem; }
+      a { color: var(--accent); }
     </style>
   </head>
   <body>
     <h1>Headless TV-B-Gone</h1>
-    <p>Flash the latest firmware to an ESP32 directly from your browser in Chrome or Edge.</p>
-
-    <div class="warning">
-      <strong>Warning:</strong> flashing replaces the board's existing firmware. Only flash devices you own or are authorized to control.
-    </div>
-
+    <p class="subtitle">ESP32 infrared transmitter web flasher</p>
+    <div class="warning"><strong>Use only on equipment you own or are authorized to control.</strong> Flashing replaces the board's existing firmware.</div>
     <div class="card">
       <h2>North America / Asia</h2>
-      <p>Use the NA/Asia firmware.</p>
+      <p>Supports classic ESP32 and ESP32-S3. The installer selects the matching image for your connected chip.</p>
       <esp-web-install-button manifest="manifest-na.json"></esp-web-install-button>
     </div>
-
     <div class="card">
       <h2>Europe</h2>
-      <p>Use the EU firmware.</p>
+      <p>Supports classic ESP32 and ESP32-S3. The installer selects the matching image for your connected chip.</p>
       <esp-web-install-button manifest="manifest-eu.json"></esp-web-install-button>
     </div>
-
-    <p>Requires the ESP32 board, USB data cable, and IR LED connected to GPIO 4. Use a correct resistor or transistor driver for the LED.</p>
+    <p><small>Use Chrome or Edge over HTTPS. Connect with a USB data cable. The IR LED is configured for GPIO 4.</small></p>
   </body>
 </html>
