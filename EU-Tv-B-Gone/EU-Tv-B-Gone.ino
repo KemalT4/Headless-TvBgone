@@ -35,7 +35,7 @@ bool expandCode(const IrCode& code) {
 
 void sendCommonPowerCodes() {
   for (uint8_t i = 0; i < kSamsungCodeCount; ++i) {
-    irsend.sendSamsung(kSamsungPowerCodes[i], 32);
+    irsend.sendSAMSUNG(kSamsungPowerCodes[i], 32);
     delay(kInterCodeDelayMs);
   }
   for (uint8_t i = 0; i < kToshibaCodeCount; ++i) {

@@ -1,0 +1,15 @@
+{
+  "name": "Headless TV-B-Gone Europe",
+  "version": "latest",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-eu.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
