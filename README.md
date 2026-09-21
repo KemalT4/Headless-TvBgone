@@ -4,11 +4,11 @@ ESP32 IR transmitter firmware with separate North America/Asia and Europe sketch
 
 ## Web flasher
 
-Flash from Chrome or Edge at https://keml4.github.io/Headless-TvBgone/.
+Flash at https://keml4.github.io/Headless-TvBgone/.
 
-Pick NA/Asia or Europe. Firmware `.bin` files are hosted same-origin on GitHub Pages (see `web/`). Manual files are also in the rolling `latest` release.
+Pick NA/Asia or Europe.
 
-## Flash with Arduino IDE
+## Flashing with Arduino IDE
 
 1. Install the ESP32 board package.
 2. Install the **IRremoteESP8266** library by `crankyoldgit`.
@@ -22,4 +22,3 @@ Pick NA/Asia or Europe. Firmware `.bin` files are hosted same-origin on GitHub P
 
 - ESP32 Dev Module
 - IR LED on GPIO 4
-
