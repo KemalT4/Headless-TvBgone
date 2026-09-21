@@ -4,7 +4,9 @@ ESP32 IR transmitter firmware with separate North America/Asia and Europe sketch
 
 ## Web flasher
 
-Doesnt work at the moment
+Flash from Chrome or Edge at https://keml4.github.io/Headless-TvBgone/.
+
+Pick NA/Asia or Europe. Firmware `.bin` files are hosted same-origin on GitHub Pages (see `web/`). Manual files are also in the rolling `latest` release.
 
 ## Flash with Arduino IDE
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
     <title>Headless TV-B-Gone Flasher</title>
-    <script type="module" src="https://unpkg.com/esp-web-tools@10.0.0/dist/web/install-button.js?module"></script>
+    <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
     <style>
       :root {
         color-scheme: dark;
@@ -64,12 +64,18 @@
     <div class="card">
       <h2>North America / Asia</h2>
       <p>Supports ESP32, ESP32-S2, ESP32-S3, ESP32-C3, and ESP32-C6. The installer selects the matching image for your connected chip.</p>
-      <esp-web-install-button manifest="manifest-na.json"></esp-web-install-button>
+      <esp-web-install-button manifest="./manifest-na.json">
+        <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
+        <span slot="not-allowed">HTTPS + USB data cable required. Close Arduino IDE / serial monitors and retry.</span>
+      </esp-web-install-button>
     </div>
     <div class="card">
       <h2>Europe</h2>
       <p>Supports ESP32, ESP32-S2, ESP32-S3, ESP32-C3, and ESP32-C6. The installer selects the matching image for your connected chip.</p>
-      <esp-web-install-button manifest="manifest-eu.json"></esp-web-install-button>
+      <esp-web-install-button manifest="./manifest-eu.json">
+        <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
+        <span slot="not-allowed">HTTPS + USB data cable required. Close Arduino IDE / serial monitors and retry.</span>
+      </esp-web-install-button>
     </div>
     <p><small>Use Chrome or Edge over HTTPS. Connect with a USB data cable. The IR LED is configured for GPIO 4.</small></p>
   </body>
