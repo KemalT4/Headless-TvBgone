@@ -22,11 +22,4 @@ Pick NA/Asia or Europe. Firmware `.bin` files are hosted same-origin on GitHub P
 
 - ESP32 Dev Module
 - IR LED on GPIO 4
-- Resistor or transistor driver for LED current
-- USB data cable
 
-Only use the transmitter with equipment you own or are authorized to control.
-
-## Firmware build workflow
-
-The GitHub Actions workflow in `.github/workflows/build-firmware.yml` compiles the latest NA and EU sketches and publishes merged `.bin` files to a rolling `latest` release for the web flasher.
