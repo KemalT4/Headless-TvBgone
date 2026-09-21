@@ -2,50 +2,10 @@
   "name": "Headless TV-B-Gone NA/Asia",
   "version": "latest",
   "builds": [
-    {
-      "chipFamily": "ESP32",
-      "parts": [
-        {
-          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na.bin",
-          "offset": 0
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-S2",
-      "parts": [
-        {
-          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-s2.bin",
-          "offset": 0
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-S3",
-      "parts": [
-        {
-          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-s3.bin",
-          "offset": 0
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-C3",
-      "parts": [
-        {
-          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-c3.bin",
-          "offset": 0
-        }
-      ]
-    },
-    {
-      "chipFamily": "ESP32-C6",
-      "parts": [
-        {
-          "path": "https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-c6.bin",
-          "offset": 0
-        }
-      ]
-    }
+    {"chipFamily":"ESP32","parts":[{"path":"https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na.bin","offset":0}]},
+    {"chipFamily":"ESP32-S2","parts":[{"path":"https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-s2.bin","offset":0}]},
+    {"chipFamily":"ESP32-S3","parts":[{"path":"https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-s3.bin","offset":0}]},
+    {"chipFamily":"ESP32-C3","parts":[{"path":"https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-c3.bin","offset":0}]},
+    {"chipFamily":"ESP32-C6","parts":[{"path":"https://github.com/keml4/Headless-TvBgone/releases/download/latest/firmware-na-c6.bin","offset":0}]}
   ]
 }
