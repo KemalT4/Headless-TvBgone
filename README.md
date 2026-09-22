@@ -4,7 +4,7 @@ ESP32 IR transmitter firmware with separate North America/Asia and Europe sketch
 
 ## Web flasher
 
-# Flash at https://keml4.github.io/Headless-TvBgone/.
+### Flash at https://keml4.github.io/Headless-TvBgone/.
 
 Pick NA/Asia or Europe.
 
