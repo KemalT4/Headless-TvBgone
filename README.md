@@ -2,7 +2,10 @@
 
 ESP32 IR transmitter firmware with separate North America/Asia and Europe sketches.
 
-## Web flasher
+## Hardware
+
+- ESP32 Dev Module
+- IR LED on GPIO 4
 
 ### Flash at https://keml4.github.io/Headless-TvBgone/.
 
@@ -19,8 +22,3 @@ Thanks to Aryann019x for fixing Webflasher
    - `EU-Tv-B-Gone/EU-Tv-B-Gone.ino`
 4. Select **ESP32 Dev Module** and your serial port.
 5. Click Upload.
-
-## Hardware
-
-- ESP32 Dev Module
-- IR LED on GPIO 4
