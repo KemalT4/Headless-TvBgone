@@ -12,26 +12,30 @@ struct IrCode {
   const uint8_t* codes;
 };
 
+// Protocol-native power codes supplement the TV-B-Gone timing tables. A TV
+// model can use a different address, so keep several common variants here.
 constexpr uint32_t kLgPowerCodes[] = {
-  0x20DF10EF,
-  0x20DF23DC,
+  0x20DF10EF,  // LG power
+  0x20DF23DC,  // LG power (alternate)
+  0x20DF40BF,  // LG power (alternate address)
 };
 constexpr uint8_t kLgCodeCount = sizeof(kLgPowerCodes) / sizeof(kLgPowerCodes[0]);
 
-// Additional common protocol-native power codes. TV models can use different
-// addresses, so these supplement (rather than replace) the TV-B-Gone codes.
 constexpr uint32_t kSamsungPowerCodes[] = {
-  0xE0E040BF,
+  0xE0E040BF,  // Samsung power
+  0xE0E09966,  // Samsung power (alternate)
 };
 constexpr uint8_t kSamsungCodeCount = sizeof(kSamsungPowerCodes) / sizeof(kSamsungPowerCodes[0]);
 
 constexpr uint32_t kToshibaPowerCodes[] = {
-  0x02FD48B7,
+  0x02FD48B7,  // Toshiba power
+  0x02FD08F7,  // Toshiba power (alternate)
 };
 constexpr uint8_t kToshibaCodeCount = sizeof(kToshibaPowerCodes) / sizeof(kToshibaPowerCodes[0]);
 
 constexpr uint16_t kSonyPowerCodes[] = {
-  0x0A90,
+  0x0A90,  // Sony SIRC power
+  0x0A91,  // Sony SIRC power (alternate)
 };
 constexpr uint8_t kSonyCodeCount = sizeof(kSonyPowerCodes) / sizeof(kSonyPowerCodes[0]);
 

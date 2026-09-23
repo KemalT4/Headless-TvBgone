@@ -4,79 +4,86 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
-    <title>Headless TV-B-Gone Flasher</title>
+    <meta name="theme-color" content="#101827" />
+    <title>Headless TV-B-Gone | ESP32 Flasher</title>
     <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
     <style>
       :root {
         color-scheme: dark;
-        --bg: #0b0d10;
-        --panel: #15191f;
-        --text: #f4f7fb;
-        --muted: #aab4c0;
-        --border: #2a333e;
-        --accent: #7c5cff;
-        --warning: #3b2d12;
+        --bg: #0a1020;
+        --panel: rgba(20, 30, 50, .78);
+        --panel-solid: #141e32;
+        --text: #f4f7ff;
+        --muted: #aebbd0;
+        --border: rgba(172, 194, 230, .18);
+        --accent: #8b7cff;
+        --accent-2: #35d6c2;
+        --warning: #362b16;
+        --shadow: 0 22px 70px rgba(0, 0, 0, .28);
       }
       @media (prefers-color-scheme: light) {
-        :root {
-          color-scheme: light;
-          --bg: #f5f7fa;
-          --panel: #ffffff;
-          --text: #111827;
-          --muted: #536170;
-          --border: #d8dee7;
-          --accent: #5b3df5;
-          --warning: #fff4d6;
-        }
+        :root { color-scheme: light; --bg: #f4f7fc; --panel: rgba(255,255,255,.82); --panel-solid: #fff; --text: #152033; --muted: #596a82; --border: #dbe3ef; --accent: #5b4be7; --accent-2: #087f76; --warning: #fff3d5; --shadow: 0 18px 50px rgba(52, 72, 108, .12); }
       }
       * { box-sizing: border-box; }
-      body {
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 2rem 1rem 4rem;
-        background: var(--bg);
-        color: var(--text);
-        font: 1rem/1.55 system-ui, sans-serif;
-      }
-      h1 { margin-bottom: .25rem; }
-      .subtitle, small { color: var(--muted); }
-      .card {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1.25rem;
-        margin: 1rem 0;
-      }
-      .warning {
-        background: var(--warning);
-        border: 1px solid #b4872b;
-        border-radius: 10px;
-        padding: .9rem 1rem;
-      }
-      esp-web-install-button { display: block; margin-top: 1rem; }
+      body { min-height: 100vh; margin: 0; padding: 2rem 1rem 4rem; background: radial-gradient(circle at 10% 0%, rgba(139,124,255,.2), transparent 35rem), radial-gradient(circle at 100% 15%, rgba(53,214,194,.13), transparent 30rem), var(--bg); color: var(--text); font: 1rem/1.6 system-ui, -apple-system, sans-serif; }
+      main { max-width: 900px; margin: auto; }
+      header { padding: 2.5rem 0 1.5rem; }
+      .eyebrow { color: var(--accent-2); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+      h1 { max-width: 650px; margin: .5rem 0; font-size: clamp(2.2rem, 7vw, 4.4rem); letter-spacing: -.055em; line-height: 1.02; }
+      h2 { margin: 0; letter-spacing: -.02em; }
+      .subtitle { max-width: 610px; margin: 1rem 0 0; color: var(--muted); font-size: 1.12rem; }
+      .warning, .card, .step { border: 1px solid var(--border); border-radius: 20px; background: var(--panel); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+      .warning { margin: 1rem 0 1.5rem; padding: 1rem 1.15rem; background: var(--warning); box-shadow: none; }
+      .warning strong { display: block; margin-bottom: .2rem; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; }
+      .card { padding: 1.35rem; transition: transform .2s ease, border-color .2s ease; }
+      .card:hover { transform: translateY(-3px); border-color: rgba(139,124,255,.65); }
+      .card p { min-height: 4.8rem; margin: .65rem 0 0; color: var(--muted); }
+      .tag { display: inline-block; margin-bottom: 1rem; padding: .25rem .6rem; border-radius: 999px; background: rgba(139,124,255,.14); color: var(--accent); font-size: .78rem; font-weight: 700; }
+      esp-web-install-button { display: block; margin-top: 1.25rem; }
+      .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin: 1.5rem 0; }
+      .step { padding: 1rem; box-shadow: none; }
+      .step b { display: block; color: var(--accent-2); font-size: .8rem; letter-spacing: .08em; }
+      .step span { display: block; margin-top: .25rem; font-weight: 650; }
+      footer { margin-top: 1.5rem; color: var(--muted); font-size: .9rem; }
       a { color: var(--accent); }
+      @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
     </style>
   </head>
   <body>
-    <h1>Headless TV-B-Gone</h1>
-    <p class="subtitle">ESP32 infrared transmitter web flasher</p>
-    <div class="warning"><strong>Use only on equipment you own or are authorized to control.</strong> Flashing replaces the board's existing firmware.</div>
-    <div class="card">
-      <h2>North America / Asia</h2>
-      <p>Supports ESP32, ESP32-S2, ESP32-S3, ESP32-C3, and ESP32-C6. The installer selects the matching image for your connected chip.</p>
-      <esp-web-install-button manifest="./manifest-na.json">
-        <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
-        <span slot="not-allowed">HTTPS + USB data cable required. Close Arduino IDE / serial monitors and retry.</span>
-      </esp-web-install-button>
-    </div>
-    <div class="card">
-      <h2>Europe</h2>
-      <p>Supports ESP32, ESP32-S2, ESP32-S3, ESP32-C3, and ESP32-C6. The installer selects the matching image for your connected chip.</p>
-      <esp-web-install-button manifest="./manifest-eu.json">
-        <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
-        <span slot="not-allowed">HTTPS + USB data cable required. Close Arduino IDE / serial monitors and retry.</span>
-      </esp-web-install-button>
-    </div>
-    <p><small>Use Chrome or Edge over HTTPS. Connect with a USB data cable. The IR LED is configured for GPIO 4.</small></p>
+    <main>
+      <header>
+        <div class="eyebrow">ESP32 · Infrared · Open hardware</div>
+        <h1>Flash your TV-B-Gone in seconds.</h1>
+        <p class="subtitle">A cleaner, safer web flasher for the Headless TV-B-Gone transmitter—with expanded protocol coverage for common TV brands.</p>
+      </header>
+      <div class="warning"><strong>Use only on equipment you own or are authorized to control.</strong>Flashing replaces the board's existing firmware.</div>
+      <section class="grid" aria-label="Firmware downloads">
+        <article class="card">
+          <span class="tag">Recommended for North America & Asia</span>
+          <h2>NA / Asia firmware</h2>
+          <p>Includes regional TV-B-Gone timings plus additional LG, Samsung, Toshiba, and Sony power variants.</p>
+          <esp-web-install-button manifest="./manifest-na.json">
+            <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
+            <span slot="not-allowed">HTTPS + a USB data cable are required. Close serial monitors and retry.</span>
+          </esp-web-install-button>
+        </article>
+        <article class="card">
+          <span class="tag">Recommended for Europe</span>
+          <h2>Europe firmware</h2>
+          <p>Includes European TV-B-Gone timings plus additional LG, Samsung, Toshiba, and Sony power variants.</p>
+          <esp-web-install-button manifest="./manifest-eu.json">
+            <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
+            <span slot="not-allowed">HTTPS + a USB data cable are required. Close serial monitors and retry.</span>
+          </esp-web-install-button>
+        </article>
+      </section>
+      <section class="steps" aria-label="Flashing steps">
+        <div class="step"><b>01</b><span>Connect a data-capable USB cable</span></div>
+        <div class="step"><b>02</b><span>Choose your regional firmware</span></div>
+        <div class="step"><b>03</b><span>Select the matching ESP32 port</span></div>
+      </section>
+      <footer>Works over HTTPS in Chrome or Edge. The IR LED is configured for GPIO 4. Keep the LED pointed at the TV and use responsibly.</footer>
+    </main>
   </body>
 </html>
