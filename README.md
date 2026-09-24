@@ -11,7 +11,7 @@ ESP32 Universal TV closing firmware with separate North America/Asia and Europe 
 
 Pick NA/Asia or Europe.
 
-Thanks to Aryann019x for fixing Webflasher
+Thanks to Aryann019x for fixing Web flasher
 
 ## Flashing with Arduino IDE (manually)
 
