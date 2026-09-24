@@ -3,308 +3,202 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="dark" />
     <title>Headless TV-B-Gone</title>
     <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
     <style>
       :root {
         color-scheme: dark;
-        --bg: #0b0b0d;
-        --bg-2: #15171b;
-        --panel: rgba(23, 24, 29, 0.9);
-        --panel-soft: rgba(30, 34, 40, 0.7);
-        --text: #f4efe9;
-        --muted: #c2b7a7;
-        --line: rgba(213, 198, 176, 0.14);
-        --accent: #f39a62;
-        --accent-strong: #dd7642;
-        --accent-soft: rgba(243, 154, 98, 0.14);
-        --sage: #b9d9b3;
-        --shadow: 0 22px 56px rgba(0, 0, 0, 0.32);
-      }
-
-      @media (prefers-color-scheme: light) {
-        :root {
-          color-scheme: light;
-          --bg: #f5f0ea;
-          --bg-2: #efe5dc;
-          --panel: rgba(255, 255, 255, 0.9);
-          --panel-soft: rgba(255, 255, 255, 0.75);
-          --text: #1d1a17;
-          --muted: #5f564d;
-          --line: rgba(71, 58, 48, 0.12);
-          --accent: #d7652b;
-          --accent-strong: #a94d1d;
-          --accent-soft: rgba(215, 101, 43, 0.08);
-          --sage: #5d7d5e;
-          --shadow: 0 24px 60px rgba(82, 68, 58, 0.12);
-        }
+        --background: #111111;
+        --surface: #181818;
+        --surface-raised: #202020;
+        --text: #f2f0ec;
+        --muted: #a7a29b;
+        --line: #34312d;
+        --accent: #d8a06a;
+        --accent-hover: #e4b17e;
       }
 
       * { box-sizing: border-box; }
 
-      html { scroll-behavior: smooth; }
-
       body {
         margin: 0;
         min-height: 100vh;
-        background:
-          radial-gradient(circle at 12% 0%, rgba(243, 154, 98, 0.15), transparent 30rem),
-          radial-gradient(circle at 90% 10%, rgba(185, 217, 179, 0.12), transparent 24rem),
-          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+        background: var(--background);
         color: var(--text);
-        font: 16px/1.55 Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font: 16px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       .page {
-        max-width: 1080px;
+        width: min(100% - 40px, 1040px);
         margin: 0 auto;
-        padding: 54px 22px 72px;
+        padding: 72px 0 64px;
       }
 
-      .hero {
-        text-align: center;
-        padding: 18px 0 24px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 72px;
-        height: 72px;
-        margin-bottom: 18px;
-        border: 1px solid rgba(243, 154, 98, 0.24);
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(243, 154, 98, 0.18), rgba(185, 217, 179, 0.08));
-        box-shadow: 0 18px 40px rgba(184, 109, 58, 0.18);
-        font-size: 32px;
+      header {
+        max-width: 680px;
+        margin-bottom: 56px;
       }
 
       .eyebrow {
-        display: inline-block;
-        padding: 7px 11px;
-        border: 1px solid rgba(185, 217, 179, 0.24);
-        border-radius: 999px;
-        background: rgba(185, 217, 179, 0.08);
-        color: var(--sage);
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.18em;
+        margin: 0 0 18px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .14em;
         text-transform: uppercase;
       }
 
       h1 {
-        margin: 16px 0 0;
-        font-size: clamp(2.8rem, 7vw, 5rem);
-        line-height: 0.96;
-        letter-spacing: -0.08em;
-        font-weight: 800;
+        margin: 0;
+        font-size: clamp(2.7rem, 7vw, 5rem);
+        font-weight: 750;
+        letter-spacing: -.065em;
+        line-height: .98;
       }
 
-      .subtitle {
-        max-width: 720px;
-        margin: 18px auto 0;
+      .intro {
+        max-width: 590px;
+        margin: 22px 0 0;
         color: var(--muted);
         font-size: 1.08rem;
       }
 
-      .grid {
+      .firmware-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 22px;
-        margin-top: 30px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
       }
 
-      .card {
-        position: relative;
-        padding: 28px 22px 20px;
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        background: var(--panel);
-        box-shadow: var(--shadow);
-        overflow: hidden;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        inset: 0 0 auto 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--accent), var(--sage));
-      }
-
-      .card-header {
+      .firmware-card {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
+        min-height: 320px;
+        flex-direction: column;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
       }
 
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        padding: 7px 10px;
-        border: 1px solid rgba(243, 154, 98, 0.22);
-        border-radius: 999px;
-        background: var(--accent-soft);
+      .card-label {
+        margin: 0;
         color: var(--accent);
-        font-size: 10px;
-        line-height: 1;
-        font-weight: 800;
-        letter-spacing: 0.12em;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .1em;
         text-transform: uppercase;
       }
 
-      .chip {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 10px;
-        background: var(--panel-soft);
-        border: 1px solid var(--line);
-        font-size: 18px;
-      }
-
       h2 {
-        margin: 18px 0 10px;
-        font-size: clamp(1.5rem, 3vw, 2.2rem);
-        line-height: 1.08;
-        letter-spacing: -0.05em;
+        margin: 14px 0 10px;
+        font-size: 1.7rem;
+        font-weight: 650;
+        letter-spacing: -.035em;
       }
 
-      .card p {
+      .firmware-card p {
         margin: 0;
-        min-height: 72px;
         color: var(--muted);
       }
 
       esp-web-install-button {
         display: block;
-        margin-top: 18px;
+        margin-top: auto;
+        padding-top: 28px;
       }
 
-      .steps {
+      .install-notes {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 30px;
-      }
-
-      .step {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 18px 16px;
-        background: rgba(255, 255, 255, 0.02);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        margin-top: 48px;
         border: 1px solid var(--line);
-        border-radius: 16px;
+        background: var(--line);
       }
 
-      .step-index {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: rgba(185, 217, 179, 0.1);
-        border: 1px solid rgba(185, 217, 179, 0.2);
-        color: var(--sage);
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.12em;
+      .note {
+        min-height: 104px;
+        padding: 18px;
+        background: var(--surface);
       }
 
-      .step span {
+      .note-number {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .08em;
+      }
+
+      .note span:last-child {
+        color: var(--text);
+        font-size: .95rem;
         font-weight: 600;
       }
 
-      .meta {
+      footer {
         display: flex;
         justify-content: space-between;
         gap: 16px;
         flex-wrap: wrap;
-        margin-top: 28px;
+        margin-top: 24px;
         padding-top: 20px;
         border-top: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.92rem;
+        font-size: .88rem;
       }
 
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 720px) {
-        .page { padding-top: 40px; }
-        .steps { grid-template-columns: 1fr; }
-        .meta { flex-direction: column; }
+      @media (max-width: 680px) {
+        .page { width: min(100% - 28px, 560px); padding-top: 44px; }
+        header { margin-bottom: 36px; }
+        .firmware-grid, .install-notes { grid-template-columns: 1fr; }
+        .firmware-card { min-height: 0; padding: 24px; }
+        .install-notes { gap: 1px; }
+        .note { min-height: 0; }
+        footer { flex-direction: column; }
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <header class="hero">
-        <div class="brand" aria-hidden="true">📺</div>
-        <div class="eyebrow">ESP32 Infrared</div>
+      <header>
+        <p class="eyebrow">ESP32 infrared transmitter</p>
         <h1>Headless TV-B-Gone</h1>
-        <p class="subtitle">Install the regional firmware for your ESP32 directly from the browser with a clean, reliable flash experience.</p>
+        <p class="intro">Choose a regional firmware build and install it directly to your ESP32 from the browser.</p>
       </header>
 
       <main>
-        <section class="grid" aria-label="Firmware selection">
-          <article class="card">
-            <div class="card-header">
-              <span class="tag">NA / Asia</span>
-              <span class="chip" aria-hidden="true">⚡</span>
-            </div>
-            <h2>North America / Asia</h2>
-            <p>Regional TV-B-Gone timings plus expanded LG, Samsung, Toshiba, and Sony power-code coverage.</p>
+        <section class="firmware-grid" aria-label="Firmware selection">
+          <article class="firmware-card">
+            <p class="card-label">North America / Asia</p>
+            <h2>NA / Asia firmware</h2>
+            <p>Regional TV-B-Gone timing tables with expanded LG, Samsung, Toshiba, and Sony power-code coverage.</p>
             <esp-web-install-button manifest="./manifest-na.json">
               <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
-              <span slot="not-allowed">HTTPS and a USB data cable are required. Close other serial monitors and retry.</span>
+              <span slot="not-allowed">Use HTTPS and a USB data cable. Close other serial monitors and retry.</span>
             </esp-web-install-button>
           </article>
 
-          <article class="card">
-            <div class="card-header">
-              <span class="tag">Europe</span>
-              <span class="chip" aria-hidden="true">📡</span>
-            </div>
-            <h2>Europe</h2>
-            <p>European timing tables with expanded LG, Samsung, Toshiba, and Sony power-code coverage.</p>
+          <article class="firmware-card">
+            <p class="card-label">Europe</p>
+            <h2>Europe firmware</h2>
+            <p>European TV-B-Gone timing tables with expanded LG, Samsung, Toshiba, and Sony power-code coverage.</p>
             <esp-web-install-button manifest="./manifest-eu.json">
               <span slot="unsupported">Web Serial is not supported. Use Chrome or Edge on desktop.</span>
-              <span slot="not-allowed">HTTPS and a USB data cable are required. Close other serial monitors and retry.</span>
+              <span slot="not-allowed">Use HTTPS and a USB data cable. Close other serial monitors and retry.</span>
             </esp-web-install-button>
           </article>
         </section>
 
-        <section class="steps" aria-label="Quick steps">
-          <div class="step">
-            <div class="step-index">01</div>
-            <span>Connect a USB data cable</span>
-          </div>
-          <div class="step">
-            <div class="step-index">02</div>
-            <span>Select the regional build</span>
-          </div>
-          <div class="step">
-            <div class="step-index">03</div>
-            <span>Choose the ESP32 port</span>
-          </div>
+        <section class="install-notes" aria-label="Installation steps">
+          <div class="note"><span class="note-number">01</span><span>Connect a USB data cable</span></div>
+          <div class="note"><span class="note-number">02</span><span>Choose the regional build</span></div>
+          <div class="note"><span class="note-number">03</span><span>Select the ESP32 port</span></div>
         </section>
       </main>
 
-      <footer class="meta">
+      <footer>
         <span>Chrome or Edge over HTTPS</span>
         <span>IR LED configured for GPIO 4</span>
         <span>Use only on equipment you own or are authorized to control</span>
