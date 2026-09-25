@@ -21,4 +21,4 @@ Thanks to Aryann019x for fixing Web flasher
    - `NA-Tv-B-Gone/NA-Tv-B-Gone.ino`
    - `EU-Tv-B-Gone/EU-Tv-B-Gone.ino`
 4. Select **ESP32 Dev Module** and your serial port.
-5. Click Upload.
+5. Upload.
