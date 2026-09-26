@@ -11,7 +11,6 @@ The web page links to these instructions, but does not pretend to flash BW16 fir
 
 - BW16 (RTL8720DN)
 - IR LED on **GPIO 12** through an appropriate current-limiting/transistor driver
-- Common ground between the BW16 and the driver circuit
 
 GPIO 12 is a default and can be changed in `BW16-NA-Tv-B-Gone/bw16_transmitter.hpp`.
 
